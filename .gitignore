@@ -1,0 +1,41 @@
+# Compiled source ####################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.md
+*.Rnw~
+*.R~
+*.synctex.gz
+*.sty~
+*.fdb_latexmk
+*.fls
+
+
+# Logs and databases #
+######################
+*.log
+*.blg
+*.aux
+*.bbl
+*.lot
+*.sql
+*.sqlite
+*.toc
+*.lof
+*.sublime-project
+*.sublime-workspace
+
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
