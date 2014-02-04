@@ -112,7 +112,7 @@ One can also use a strategy that incorporates some distance measure between poin
 		$p_{ij}(x) \propto \Big( \frac{\pi (x_j)}{\pi( x_i )} \wedge \frac{\pi (x_i)}{\pi( x_j )} \Big)^\frac{|\beta_i - \beta_j|}{1 + \rho(x_i, x_j)} = \exp \Big( - \frac{|\beta_i - \beta_j| \times | \log ( \pi(x_j) ) - \log ( \pi(x_i) ) |}{{1 + \rho(x_i, x_j)}} \Big).$\label{strat4}
 \end{strategy} 
 
-Finally, for purposes of comparisons with \citet{BaragattiParallelTemperingWithEquiEnergyMoves}, we include also strategies that are independent of the underlying {\it State Space}, i.e. the probability of swaps does not depend on the evaluations of the density $\pi$ in the sample points. Such na\"ive strategies include 
+Finally, for purposes of comparisons with \cite{BaragattiParallelTemperingWithEquiEnergyMoves}, we include also strategies that are independent of the underlying {\it State Space}, i.e. the probability of swaps does not depend on the evaluations of the density $\pi$ in the sample points. Such na\"ive strategies include 
 
 \begin{strategy}[resume]
 	\item $p_{ij} = \frac{2}{L (L - 1)}$\label{strat5}
