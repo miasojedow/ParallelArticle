@@ -1,0 +1,127 @@
+\section{New Swap Strategies}
+
+Here I shall put some info on the swap strategies, like \cite{DavidRomer, DaviddeLaCroix}.
+
+Now we address the question of how to interlace the independent chains generated with kernel $\metro$. We want to swap the generated states so that chains with higher temperature influence the regions of lower temperatures. Being more precise, the swapping gives some possibility to the chains with lower temperatures to find themeselves in states that would otherwise be very unlikely to happen, the path leading to them being very unlikely to occur - these paths are rendered more probable for the chains with higher temperature. The swaps are made at random so that the probability of swaps takes into account some properties of $\pi$ evaluated on the last points from all the chains. 
+
+Before passing to detailed description of different ways the swaps might be made, which we call Strategies, let us first describe the properties of the swap kernel $\swap$ common to all Strategies. In all cases, we rely on the following assumption
+
+\begin{assumptions}
+	\item At one step of the algorithm, there will be only one possible swap between a chosen at random pair of coordinates.
+\end{assumptions}
+
+The restriction here is not so much in the number of swaps per step. What seems to be more relevant is rather the constraint to a particular subset of the group of all permutations --- for one could certainly envisage that any random permutation could take place. However, it simplifies the interpretation of {\it Strategies} that are to be described. 
+
+Let us denote the swap operator by $S_{ij}$, so that 
+$$S_{ij} x = (x_1, \dots, x_{i-1}, x_j, x_{i+1}, \dots, x_{j-1}, x_i, x_{j+1}, \dots, x_L).$$ 
+We require $\swap(x, \circ )$ to be a measure concentrated on the set of all possible pairs of swaps between coordinates of $x = (x_1, \dots, x_L)$, i.e. on the set $\mathfrak{S}_x \equiv \{ S_{ij}x : i < j  \}$. We note that the proposal measure for the swap kernel $\mathcal{Q}$ is of the following form 
+
+\begin{equation*}
+	\mathcal{Q}(x, A) \equiv \underset{i < j}{\sum} p_{ij}(x) \mathbb{I}_A (S_{ij} x)
+\end{equation*}	 
+
+Then, the swap kernel would be of the following form, for any $x \in \Omega^L$ and $A$
+
+\begin{equation*}
+	\swap(x,A) = \int_{A} \alpha_\text{swap} (x,y) \mathcal{Q}(x, \mathrm{d}\,y) + r(x) \mathcal{I}(x,A)
+\end{equation*}	
+
+where $r(x) = 1 - \underset{\Omega^L}{\int} \alpha_\text{swap} (x,y) \mathcal{Q}(x, \mathrm{d}\,y) $. Plugging $\mathcal{Q}$ permits us to write
+
+\begin{align*}
+	\begin{split}
+		\int_{A} \alpha_\text{swap} (x,y) \mathcal{Q}(x, \mathrm{d}\,y) &= \underset{ i < j}{\sum} p_{ij}(x) \int \alpha_\text{swap} (x,y) \mathbb{I}_A (y) \delta_{S_{ij}x}(\mathrm{d}\, y) \\ &= \underset{ i < j}{\sum} p_{ij}(x) \alpha_\text{swap} (x, S_{ij}x) \mathbb{I}_A(S_{ij} x),
+	\end{split}
+\end{align*}	
+
+so that finally
+
+\begin{equation*}
+	\swap(x,A) = \underset{ i < j}{\sum} p_{ij}(x) \alpha_\text{swap} (x, S_{ij}x) \mathbb{I}_A(S_{ij} x) + \Big( 1 - \underset{ i < j}{\sum} p_{ij}(x) \alpha_\text{swap} (x, S_{ij}x)\Big) \mathcal{I}(x,A),
+\end{equation*}	
+
+where 
+
+	$$\alpha_\text{swap}(x,y) = \frac{\pi_\beta( \mathrm{d}\, y ) \mathcal{Q}(y, \mathrm{d}\,x)}{\pi_\beta( \mathrm{d}\, x ) \mathcal{Q}(x, \mathrm{d}\,y)} \wedge 1$$
+
+is the Radon-Nikodym derivative of two measures. It's calculated with respect to measure $ \mu (\mathrm{d}\,x, \mathrm{d}\,y) \equiv \pi(\mathrm{d}\,x) \mathcal{Q}(x, \mathrm{d}\,y)$. The measure that is being differentiated is $\mu$ composed with the exchange coordinates operation, $R(x,y) = (y,x)$\footnote{Which is obviously measurable in the appropriate sense.}. So finally $\alpha_\text{swap} \equiv \frac{\mathrm{d}\, \mu \circ R^{-1}}{\mathrm{d}\, \mu}$.
+
+Observe that thanks to the proposal's support finiteness we actually get 
+
+	$$\alpha_\text{swap}(x,y) =  \frac{\pi_\beta( y ) \mathcal{Q}(y, x)}{\pi_\beta( x ) \mathcal{Q}(x, y)} \wedge 1.$$
+
+
+Now, since $y \in \mathfrak{S}_x $, the tagetted $\pi_\beta$ is a tensor of measures, $Q(x, S_{ij} x) = p_{ij}(x)$, and $Q( S_{ij} x, x) = p_{ij}(S_{ij}x)$ \footnote{Here we pass from measure notation to probability function notation, $\mathcal{Q}(x, \{S_{ij}x \}) = \mathcal{Q}(x, S_{ij}x)$. We can do it because $\mathcal{Q}$ is purely atomic given $x$.}, we get finally 
+
+\begin{equation*}
+	\alpha_\text{swap}(x,S_{ij} x) = \Big[  \Big(\frac{\pi(x_j)}{\pi(x_i)} \Big)^{\beta_i - \beta_j}  \frac{ p_{ij}(S_{ij} x )}{ p_{ij}( x ) }\Big] \wedge 1
+\end{equation*}	
+
+In our computer simulations several swapping strategies have been tested. For instance,
+
+\begin{strategy}
+	\item 
+		$
+			p_{ij}(x) \propto 
+			\frac{\pi (x_j)}{\pi( x_i )} \wedge \frac{\pi (x_i)}{\pi( x_j )} = 
+			\exp \Big( - \big| \log ( \pi(x_j) ) - \log ( \pi(x_i) ) \big| \Big).
+		$\label{strat1} 
+\end{strategy}
+
+In this particular the proportionality is in fact equality, because the above expression is transposition symmetric and this considerably simplifies the statistical sum analysis. In general, we want $p_{ij}(x) \propto h(x_i,x_j)$ for some function $h$. Thus,
+
+\begin{equation*}
+	\frac{p_{kl}(S_{kl}x)}{p_{kl}(x)} = \frac{\frac{h(x_l,x_k)}{A(\tilde{x}_{kl})+f(x_k)+g(x_l)+h(x_l,x_k)}}{
+	\frac{h(x_k,x_l)}{A(\tilde{x}_{kl})+f(x_l)+g(x_k)+h(x_k,x_l)}
+	} = 
+	\underbrace{\frac{h(x_l,x_k)}{h(x_k,x_l)}}_\text{'direct effect'} 
+	\times 
+	\underbrace{\frac{A(\tilde{x}_{kl})+f(x_l)+g(x_k)+h(x_k,x_l)}{A(\tilde{x}_{kl})+f(x_k)+g(x_l)+h(x_l,x_k)}}_\text{'distribution effect'},	 	 	
+\end{equation*}  
+where $\tilde{x}_{kl}$ is $x$ without its $k^\text{th}$ and $l^\text{th}$ coordinates, $f(x_l) = \sum_{i<l, i\not=k} h(x_i, x_l)$, and $g(x_k) = \sum_{j>k, i\not=l}h(x_k, x_j)$. As we see it is fairly straightforward to compare the above expression to $1$ if the 'distribution effect' equals $1$, and difficult had it been the other case. To assure this happens, one can settle for a function $h$ that is transposition invariant, $h(x,y)=h(y,x)$. This is certainly the case of \ref{strat1}. In this strategy therefore we are promoting exactly swaps between coordinates whose proposals have relatively the same $\pi$ density values, i.e. $\pi (x_j) \approx \pi (x_i)$. 
+
+
+
+\begin{strategy}[resume]
+	\item 
+		$
+			p_{ij}(x) \propto 
+			\frac{\pi (x_j)}{\pi (x_i)} \wedge 1 = 
+			\exp \Big( - \big[ \log ( \pi(x_j) ) - \log ( \pi(x_j) ) \big]\Big) \wedge 1.$\label{strat2}
+\end{strategy}
+
+This strategy breaks the symmetry of the previous one rendering the evaluation of the effect on the $\alpha_\text{swap}$ challenging, if not impossible. The main idea behind this strategy was to  
+
+
+The subsequent strategies are again functions of the fist strategy.
+
+\begin{strategy}[resume]
+	\item 
+		$p_{ij}(x) \propto 
+			\Big( \frac{\pi (x_j)}{\pi( x_i )} \wedge 
+			\frac{\pi (	x_i)}{\pi( x_j )} \Big)^{|\beta_i - \beta_j|} = 
+		\exp \Big( - |\beta_i - \beta_j| \times \big| \log ( \pi(x_j) ) - \log ( \pi(x_i) ) \big| \Big).$\label{strat3} 
+\end{strategy}
+
+This strategy permits us to soften a bit the requirement that $\pi(x_j) \approx \pi (x_i)$. This effect is strengthened for coordinates that are similarly tempered, i.e. where $\beta_i - \beta_j \approx 0$. Swaps between adjacent chains will be therefore more probable. 
+
+One can also use a strategy that incorporates some distance measure between points, $\rho$ being any quasi-metric. \ref{strat4} is a good example of such procedure - the more distant the points, the less probable it is for them to get swapped.  
+
+\begin{strategy}[resume]
+	\item 
+		$p_{ij}(x) \propto \Big( \frac{\pi (x_j)}{\pi( x_i )} \wedge \frac{\pi (x_i)}{\pi( x_j )} \Big)^\frac{|\beta_i - \beta_j|}{1 + \rho(x_i, x_j)} = \exp \Big( - \frac{|\beta_i - \beta_j| \times | \log ( \pi(x_j) ) - \log ( \pi(x_i) ) |}{{1 + \rho(x_i, x_j)}} \Big).$\label{strat4}
+\end{strategy} 
+
+Finally, for purposes of comparisons with \citet{BaragattiParallelTemperingWithEquiEnergyMoves}, we include also strategies that are independent of the underlying {\it State Space}, i.e. the probability of swaps does not depend on the evaluations of the density $\pi$ in the sample points. Such na\"ive strategies include 
+
+\begin{strategy}[resume]
+	\item $p_{ij} = \frac{2}{L (L - 1)}$\label{strat5}
+\end{strategy}
+
+and 
+
+\begin{strategy}[resume]
+	\item $p_{ij} = \frac{1}{L - 1} \ind{\{|i-j|=1\}}$\label{strat6}
+\end{strategy}
+
+amounting to choosing uniformly among all possible swaps and all neighbouring-in-temperature swap respectively. 

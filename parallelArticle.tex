@@ -1,0 +1,70 @@
+%!TEX program = <xelatex>
+\documentclass[aoas,preprint]{imsart}
+  
+\usepackage{settings}
+
+\begin{document}
+
+\begin{frontmatter}
+  \title{Parallel Tempering\thanksref{T1}}
+  \runtitle{A Sample Document}
+  \thankstext{T1}{Special thanks goes to Sir Arthur Conan Doyle for giving us constant thrill and intelectual suspense.}
+
+  \begin{aug}
+    \author{\fnms{B\l a\.zej} \snm{Miasojedow}\thanksref{m1}\ead[label=e1]{bmia@mimuw.edu.pl}},
+    \author{\fnms{Mateusz} \snm{\L \c acki}\corref{}\thanksref{m1}\ead[label=e2]{mateusz.lacki@biol.uw.edu.pl}}
+    \and
+    \author{\fnms{Wojciech} \snm{Niemiro}\thanksref{m1,m2}
+    \ead[label=e3]{wniemiro@gmail.com}
+    \ead[label=u1,url]{http://www.mimuw.edu.pl/wydzial/organizacja/struktura/?para=pracownicy&parb=10030300}}
+
+    \thankstext{t1}{Some comment}
+    \thankstext{t2}{First supporter of the project}
+    \thankstext{t3}{Second supporter of the project}
+    \runauthor{B. Miasojedow et al.}
+
+    \affiliation{University of Warsaw\thanksmark{m1} and University of Toru\'n\thanksmark{m2}}
+
+    % \address{Address of the First and Second authors\\
+    % Usually a few lines long\\
+    % \printead{e1}\\
+    % \phantom{E-mail:\ }\printead*{e2}}
+
+    % \address{Address of the Third author\\
+    % Usually a few lines long\\
+    % Usually a few lines long\\
+    % \printead{e3}\\
+    % \printead{u1}}
+  \end{aug}
+
+  \begin{abstract}
+  The abstract should summarize the contents of the paper.
+  It should be clear, descriptive, self-explanatory and not longer
+  than 200 words. It should also be suitable for publication in
+  abstracting services. Please avoid using math formulas as much as possible.
+
+  This is a sample input file.  Comparing it with the output it
+  generates can show you how to produce a simple document of
+  your own.
+  \end{abstract}
+
+  % \begin{keyword}[class=MSC]
+  %   \kwd[Primary ]{60K35}
+  %   \kwd{60K35}
+  %   \kwd[; secondary ]{60K35}
+  % \end{keyword}
+
+  % \begin{keyword}
+  %   \kwd{sample}
+  %   \kwd{\LaTeXe}
+  % \end{keyword}
+
+\end{frontmatter}
+
+\input{./tex/introduction}
+\input{./tex/swapStrategies}
+
+\bibliographystyle{./bibliography/acmtrans-ims}
+\bibliography{./bibliography/bibliographyEntries}
+
+\end{document}

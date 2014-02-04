@@ -1,0 +1,54 @@
+\ProvidesPackage{settings}
+
+\RequirePackage[OT1]{fontenc}
+\RequirePackage{amsthm,amsmath,amsfonts}
+\RequirePackage[numbers]{natbib}
+%\RequirePackage{natbib}
+%\RequirePackage[colorlinks,citecolor=blue,urlcolor=blue,pdfpagelabels]{hyperref}
+\RequirePackage{hyperref}
+
+% Publication Settings
+%\pubyear{2005}
+%\volume{0}
+%\issue{0}
+%\firstpage{1}
+%\lastpage{8}
+\arxiv{arXiv:0000.0000}
+
+\startlocaldefs
+
+	\numberwithin{equation}{section}
+	\theoremstyle{plain}
+	\newtheorem{thm}{Theorem}[section]
+	
+	\newcommand{\swap}{\mathcal{S}_{\beta}}
+	\newcommand{\metro}{M_{\Sigma,\beta}} 
+	\newcommand{\metrobis}[1]{M_{\Sigma_{#1},\beta_{#1}}} 
+  \newcommand{\ind}[1]{\mathbb{I}_{ #1 }}
+  \newcommand{\indA}[1]{\mathbb{I}_{\{ A = #1 \}}}
+  \newcommand{\indAA}[2]{\mathbb{I}_{\{ A_{#1} = #2 \}}}
+
+\endlocaldefs
+
+
+\usepackage{xcolor}
+  \definecolor{adriatico}{rgb}{.2,.40,.90}
+  \definecolor{DarkOliveGreenForU}{rgb}{.6,.25,.25}
+  \definecolor{red}{rgb}{.8,.3,.1}
+  \definecolor{green}{rgb}{.2,.8,.1}
+  \definecolor{brownie}{rgb}{.174,.104,.43}
+  \definecolor{dkgreen}{rgb}{0,0.6,0}
+  \definecolor{gray}{rgb}{0.5,0.5,0.5}
+  \definecolor{mauve}{rgb}{0.58,0,0.82}
+  \definecolor{peach}{rgb}{1,.97,1}
+  \definecolor{rosemadder}{rgb}{.89, .21, .22}
+  \definecolor{oldlace}{rgb}{.99,.96,.9}
+  \definecolor{gummi_red}{rgb}{.99, .08, .0}	
+  \definecolor{titaniumwhite}{rgb}{.99, 1, .94}
+
+\usepackage{enumitem}
+  \newlist{assumptions}{enumerate}{1}
+  \setlist[assumptions,1]{label=\textcolor{DarkOliveGreenForU}{\textsc{Assumption} \Roman*}}
+
+  \newlist{strategy}{enumerate}{1}
+  \setlist[strategy,1]{label=\textcolor{red}{\textsc{Strategy} \Roman*}}
